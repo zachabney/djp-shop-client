@@ -1,0 +1,7 @@
+<app-spinner [visible]="loading && !error"></app-spinner>
+<div class="alert alert-danger" role="alert" [class.d-none]="!error">
+	<h4 class="alert-heading">Uh oh, there was a problem.</h4>
+	<p>We're having trouble reaching our servers at the moment.</p>
+	<hr>
+	<p class="mb-0">Please try again in a few minutes, or <a href="mailto:support@djpcreative.com">contact us</a> if the problem persists.</p>
+</div>

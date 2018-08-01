@@ -1,0 +1,26 @@
+<div class="card-deck mb-3 text-center">
+	<div class="card mb-4 box-shadow" *ngFor="let product of products">
+		<div class="card-header">
+			<h4 class="my-0 font-weight-normal">{{ product.title }}</h4>
+		</div>
+		<div class="card-body">
+			<h1 class="card-title pricing-card-title">
+				<span *ngIf="!product.owned">${{ toDollars(product.price) }}</span>
+				<span *ngIf="product.owned">Owned</span>
+			</h1>
+			<p class="mt-3 mb-4">
+				Access to the full graduation ceremony video in the convient form of a digital download.
+			</p>
+			<div class="action">
+				<button type="button" *ngIf="!product.owned" class="btn btn-lg btn-block btn-outline-primary" routerLink="/checkout/{{ product.id }}">
+					<span *ngIf="!product.preorder">Buy Now</span>
+					<span *ngIf="product.preorder">Pre-Order</span>
+				</button>
+				<span *ngIf="product.owned">
+					<a *ngIf="product.download" class="btn btn-lg btn-block btn-primary" [href]="product.download.url" download>Download now</a>
+					<a *ngIf="product.preorder" class="btn btn-lg btn-block btn-outline-primary btn-preorder" href="#">Available Soon</a>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

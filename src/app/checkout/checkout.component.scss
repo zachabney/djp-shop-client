@@ -1,0 +1,21 @@
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.border-top-gray { border-top-color: #adb5bd; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.lh-condensed { line-height: 1.25; }
+
+#card-info {
+	padding: .75rem;
+}
+
+.pre-order-tag {
+	border-radius: 3px;
+	background-color: rgba(0, 0, 0, 0.45);
+	color: #FFF;
+	padding: 3px;
+	font-size: 70%;
+	display: inline-block;
+	margin: 5px;
+}

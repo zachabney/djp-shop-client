@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="py-5 text-center">
+		<h1 class="display-4">Email address</h1>
+		<p class="lead">Who wants to have to remember usernames and passwords? Simply enter your email address below and we'll send you a link to access your downloads.</p>
+
+		<div class="alert alert-success" role="alert" *ngIf="success">
+			Great! You should receive an email shortly with a link to access your downloads.
+		</div>
+
+		<div class="alert alert-danger" role="alert" *ngIf="noEmail">
+			Whoops, it looks like nothing has been purchased with that email address.
+			<br>
+			If you believe this is a mistake, please <a href="mailto:support@djpcreative.com">let us know</a> and we'll correct the problem.
+		</div>
+
+		<div class="alert alert-warning" role="alert" *ngIf="loggedOutFromExpire && formNeverSubmitted">
+			Hmm, it looks like you've been logged out. Enter your email to login again.
+		</div>
+
+		<form #login="ngForm" (ngSubmit)="onSubmit(login)">
+			<div class="mb-3">
+				<label for="email"></label>
+				<input
+					type="email"
+					class="form-control"
+					placeholder="Email address"
+					required
+					email
+					[(ngModel)]="email"
+					name="email"
+					#loginEmail="ngModel"
+					autofocus
+					[disabled]="submitting">
+				<div class="invalid-feedback" [class.d-block]="loginEmail.invalid && loginEmail.dirty && loginEmail.touched">
+					Please enter a valid email address.
+				</div>
+			</div>
+
+			<button
+				class="btn btn-primary btn-lg btn-block spinner-button"
+				type="submit"
+				[disabled]="!login.valid || submitting"
+				[class.btn-success]="success">
+				<span *ngIf="!submitting">Send me the link!</span>
+				<app-success-spinner [state]="spinnerState" [size]="'27px'" class="m-auto"></app-success-spinner>
+			</button>
+		</form>
+	</div>
+</div>

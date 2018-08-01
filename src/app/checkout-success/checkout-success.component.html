@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="py-5 text-center">
+		<h1 class="display-4">Thank You!</h1>
+		<p class="lead">
+			Your purchase was successful!
+			<span *ngIf="!hasPreorder()">Your graduation video is ready for download!</span>
+			<span *ngIf="hasPreorder()">Your graduation video will be available soon! You'll receive an email as soon as the download is ready.</span>
+		</p>
+
+		<app-product-list [products]="products"></app-product-list>
+	</div>
+</div>

@@ -1,0 +1,160 @@
+$line-size: 2px;
+$line-color: rgba(255, 2555, 255, .25);
+
+$pending-color: #FFF;
+$success-color: #FFF;
+$failed-color: #FFF;
+$check-short: 25%;
+$check-long: 50%;
+$x-size: 100%;
+
+$circle-time: 1s;
+$success-time: 500ms;
+
+.spinner {
+	margin: auto;
+	display: block;
+
+	&.hidden {
+		display: none;
+	}
+}
+
+.circle {
+	position: relative;
+	display: inline-block;
+
+	width: 100%;
+	height: 100%;
+
+	border: $line-size solid $line-color;
+	border-top-color: $pending-color;
+	border-radius: 50%;
+
+	animation-name: spinner;
+	animation-duration: $circle-time;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+
+	&.success {
+		animation-name: spinner-success;
+		animation-duration: $success-time;
+		animation-iteration-count: 1;
+		animation-timing-function: ease-in-out;
+		animation-fill-mode: forwards;
+	}
+
+	&.fail {
+		animation: none;
+		border-color: $failed-color;
+	}
+}
+
+.checkmark {
+	position: absolute;
+
+	width: 100%;
+	height: 100%;
+
+	top: 50%;
+	left: 50%;
+
+	// multiply the non-rotated check width * height by cosine(45deg) and add them
+	$rotated-check-size: $check-long * 0.70711 + $check-short * 0.70711;
+
+	transform-origin: 0 0;
+	transform: translateX(-($rotated-check-size / 2)) rotate(-45deg);
+}
+
+.checkmark::after {
+	display: block;
+	content: ' ';
+	opacity: 0;
+	width: 0;
+	height: 0;
+	border-left: $line-size solid $success-color;
+	border-bottom: $line-size solid $success-color;
+}
+
+.circle.success .checkmark::after {
+	animation-name: check;
+	animation-delay: $success-time;
+	animation-duration: $success-time;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-out;
+	animation-fill-mode: forwards;
+}
+
+.x {
+	position: absolute;
+	opacity: 0;
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: $x-size;
+	height: $x-size;
+
+	svg {
+		line {
+			stroke: $failed-color;
+			stroke-width: 1px;
+		}
+	}
+}
+
+.circle.fail .x {
+	opacity: 1;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spinner-success {
+	0% {
+		border-color: $line-color;
+	}
+	25% {
+		border-color: $line-color;
+		border-top-color: $success-color;
+	}
+	50% {
+		border-color: $line-color;
+		border-top-color: $success-color;
+		border-right-color: $success-color;
+	}
+	75% {
+		border-color: $line-color;
+		border-top-color: $success-color;
+		border-right-color: $success-color;
+		border-bottom-color: $success-color;
+	}
+	100% {
+		border-color: $success-color;
+	}
+}
+
+@keyframes check {
+	0% {
+		opacity: 1;
+		width: 0%;
+		height: 0%;
+	}
+	40% {
+		opacity: 1;
+		width: 0%;
+		height: $check-short;
+	}
+	100% {
+		opacity: 1;
+		width: $check-long;
+		height: $check-short;
+	}
+}

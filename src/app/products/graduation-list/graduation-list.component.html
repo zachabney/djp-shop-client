@@ -1,0 +1,16 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+	<h1 class="display-4">Graduations</h1>
+	<p class="lead">Save that special moment you and your friends walked across the stage with a professional video recording of the full graduation ceremony.</p>
+</div>
+
+<div class="row">
+	<app-loading-spinner [loading]="products.length == 0" [error]="productsLoadError" class="m-auto"></app-loading-spinner>
+</div>
+
+<div class="container">
+	<app-product-list [products]="products"></app-product-list>
+
+	<div>
+		<p class="text-muted"><a routerLink="/downloads">Looking for a graduation video you've already purchased?</a></p>
+	</div>
+</div>
