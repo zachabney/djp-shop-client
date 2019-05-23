@@ -1,7 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Product } from '../product';
-import { ProductService } from '../product.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-graduation-list',
@@ -9,8 +7,24 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./graduation-list.component.scss']
 })
 export class GraduationListComponent {
+	isLoading = true;
 
-	@Input() products: Product[] = [];
+	_products = {};
+	_years = [];
+	@Input()
+	set products(products: Product[]) {
+		this._products = products.reduce((accumulator, current) => {
+			accumulator[current.year] = accumulator[current.year] || [];
+			accumulator[current.year].push(current);
+			return accumulator;
+		}, {});
+
+		this._years = Object.keys(this._products)
+			.sort()
+			.reverse();
+
+		this.isLoading = false;
+	}
+
 	@Input() productsLoadError = false;
-
 }

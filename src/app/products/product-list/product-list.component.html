@@ -1,3 +1,5 @@
+<h3 class="text-center">{{ year }}</h3>
+<hr />
 <div class="card-deck mb-3 text-center">
 	<div class="card mb-4 box-shadow" *ngFor="let product of products">
 		<div class="card-header">
@@ -12,13 +14,16 @@
 				Access to the full graduation ceremony video in the convient form of a digital download.
 			</p>
 			<div class="action">
-				<button type="button" *ngIf="!product.owned" class="btn btn-lg btn-block btn-outline-primary" routerLink="/checkout/{{ product.id }}">
+				<button type="button" *ngIf="!product.owned" class="btn btn-lg btn-block btn-outline-primary"
+					routerLink="/checkout/{{ product.id }}">
 					<span *ngIf="!product.preorder">Buy Now</span>
 					<span *ngIf="product.preorder">Pre-Order</span>
 				</button>
 				<span *ngIf="product.owned">
-					<a *ngIf="product.download" class="btn btn-lg btn-block btn-primary" [href]="product.download.url" download>Download now</a>
-					<a *ngIf="product.preorder" class="btn btn-lg btn-block btn-outline-primary btn-preorder" href="#">Available Soon</a>
+					<a *ngIf="product.download" class="btn btn-lg btn-block btn-primary" [href]="product.download.url"
+						download>Download now</a>
+					<a *ngIf="product.preorder" class="btn btn-lg btn-block btn-outline-primary btn-preorder" href="#">Available
+						Soon</a>
 				</span>
 			</div>
 		</div>

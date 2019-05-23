@@ -9,14 +9,13 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-
 	products: Product[] = [];
 	productsLoadError = false;
 
 	constructor(
 		private productService: ProductService,
 		private route: ActivatedRoute
-	) { }
+	) {}
 
 	async ngOnInit() {
 		await this.getProducts();
@@ -30,5 +29,4 @@ export class ProductsComponent implements OnInit {
 			this.productsLoadError = true;
 		}
 	}
-
 }

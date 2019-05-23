@@ -38,13 +38,13 @@ import { apiInterceptorProviders } from './api/interceptors';
 		ProductAliasComponent,
 		GraduationListComponent
 	],
-	imports: [
-		BrowserModule,
-		HttpClientModule,
-		AppRoutingModule,
-		FormsModule
+	imports: [BrowserModule, HttpClientModule, AppRoutingModule, FormsModule],
+	providers: [
+		ProductService,
+		CheckoutService,
+		LoginService,
+		apiInterceptorProviders
 	],
-	providers: [ProductService, CheckoutService, LoginService, apiInterceptorProviders],
 	bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
